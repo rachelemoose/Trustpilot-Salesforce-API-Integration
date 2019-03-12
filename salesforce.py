@@ -27,3 +27,37 @@ if auth_token == None:
 	print('No Access Token Received')
 else:
 	print("Trustpilot Access Token: " + auth_token)
+
+# Query contacts - get contacts name, email and salesforce id 
+records = sf.query("SELECT Id, Name, Email FROM Contact")
+records = records['records']
+# print(records)
+for record in records:
+    name = record['Name']
+    print (name)
+    email = record['Email']
+    print(email)
+    uniqueID = record['Id']
+    print(uniqueID)
+    # Generate Service Review Invitation Link 
+    url = "https://invitations-api.trustpilot.com/v1/private/business-units/" + businessUnitId + "/invitation-links?token=" + auth_token
+    print(url)
+    datafind = {
+        "referenceId": uniqueID,
+        "name": name,
+        "locale": "en-US",
+        "email": email,
+        "redirectUri": "http://trustpilot.com"
+        }
+    data_json = json.dumps(datafind)
+    print(data_json)
+    headers = {'Content-type': 'application/json'}
+    res = requests.post(url, data=data_json, headers=headers)
+    print(res)
+    prettyResponse = res.json()
+    print(prettyResponse)
+    tpLink = prettyResponse['url']
+    print("Trustpilot Invitation Link: " + tpLink)
+    info = sf.Contact.get(uniqueID)
+    updateSF = sf.Contact.update(uniqueID, {'Description': tpLink})
+    print(info['Description'])
