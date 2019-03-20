@@ -24,3 +24,11 @@ Trustpilot Customer APIs contain private resources and use OAuth 2.0 authenticat
 
 Your returned access token should be appended to the url of any private Trustpilot API calls. You'll see this as the auth_token value in the script. 
 
+## Salesforce Information
+Use the query call to query your SalesForce contacts. We will need name, email address and a unique identifying number as a minimum of fields that will be passed to Trustpilot. The identifying number can be anything, such as a custom contact field for account number or order number. In this script we're using SalesForce's generated unique ID, but it should be a number you can easily associate with this customer's experience with you so that you can easily look them up by their unqiue reference ID if necessary. 
+
+## Use Customer Data to Generate A Unique Trustpilot Review Link 
+Perform a POST call to Trustpilot's API with your Business Unit Id, OAuth Token, and Customer Data. If the call was successful, a unique link will be returned per SalesForce contact. More information on this API call can be found [here](https://developers.trustpilot.com/invitation-api#generate-service-review-invitation-link). See [frequently asked questions](https://developers.trustpilot.com/faq) for common error messages. 
+
+## Update SalesForce with the Trustpilot Unique Link
+Use the update call to update any field with the unique link returned from Trustpilot. In this script we're using the Salesforce "Description" field to host the Trustpilot Invitation link but this can be any field. I would recommend a custom contact field called "Trustpilot invitation link". Use this field in any communications sent from Salesforce as data tag to dynamically populate this link for each customer. 
