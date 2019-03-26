@@ -1,4 +1,4 @@
-# Trustpilot-Salesforce-Integration
+# Trustpilot-Salesforce-API-Integration
 Trustpilot Integration with Salesforce using simple-salesforce and Trustpilot API (generate service review invitation link)
 
 This integation uses [Python Simple-Salesforce package](https://pypi.org/project/simple-salesforce/). 
