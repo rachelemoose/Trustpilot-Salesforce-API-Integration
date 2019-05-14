@@ -1,7 +1,7 @@
 # Trustpilot-Salesforce-API-Integration
 Trustpilot Integration with Salesforce using simple-salesforce and Trustpilot API (generate service review invitation link)
 
-This integation uses [Python Simple-Salesforce package](https://pypi.org/project/simple-salesforce/). 
+This integation uses [Python Simple-Salesforce package](https://pypi.org/project/simple-salesforce/). This integration does **NOT** use Scratch Orgs or Salesforce DX Environment. Rather, this can be run completely from your own CLI completely outside of Salesforce Developer Experience.
 
 # Installation 
 pip install simple-salesforce (https://pypi.org/project/simple-salesforce/)
